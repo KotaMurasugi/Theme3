@@ -1,0 +1,15 @@
+<%= flash[:notice] %>
+<%= render 'users/user', user: @user, book: @book_new %>
+<h1>Book detail</h1>
+<%= link_to (@book.user) do %>
+  <%= image_tag @book.user.get_profile_image(100,100) %> </br>
+  <%= @book.user.name %>
+<% end %>
+<%=link_to @book.title, book_path(@book.id) %>
+<%= @book.body %>
+<% if @book.user == current_user %>
+  <%= link_to "Edit", edit_book_path(@book.id), %>
+<% end %>
+<% if @book.user == current_user %>
+  <%= link_to "Destroy", book_path(@book), method: :delete, %>
+<% end %>
